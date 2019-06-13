@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}Locations{% endblock %}
+
+{% block content %}
+
+    <h3>Locations List</h3>
+
+    <a class="btn-sm btn-success" href="{% url 'add_location' %}">Add Location</a>
+
+    <table class="table" id="myTable">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">Name</th>
+            <th onclick="sortTable(1)">City</th>
+            <th onclick="sortTable(2)">Street Name</th>
+            <th onclick="sortTable(3)">Street Number</th>
+            <th onclick="sortTable(4)">Zip code</th>
+            <th onclick="sortTable(5)">Country</th>
+            <th onclick="sortTable(6)">latitude</th>
+            <th onclick="sortTable(7)">longitude</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+            <tr>
+                <td>{{ location.name }}</td>
+                <td>{{ location.city }}</td>
+                <td>{{ location.street_name }}</td>
+                <td>{{ location.street_number }}</td>
+                <td>{{ location.zip }}</td>
+                <td>{{ location.country }}</td>
+                <td>{{ location.latitude }}</td>
+                <td>{{ location.longitude }}</td>
+                <td><a class="btn-sm btn-warning" href="{% url 'edit_location' location.id_location %}">EDIT</a></td>
+                <td><a class="btn-sm btn-danger" href="{% url 'delete_location' location.id_location %}">DELETE</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

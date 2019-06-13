@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}Contacts list{% endblock %}
+
+{% block content %}
+
+<h3>Contacts List</h3>
+
+<a class="btn-sm btn-success" href="{% url 'add_contact' %}">Add Contact</a>
+
+<table class="table" id="myTable">
+  <thead>
+    <tr>
+        <th onclick="sortTable(0)">Contact</th>
+        <th onclick="sortTable(1)">Person</th>
+        <th onclick="sortTable(2)">Contact type</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for contact in contacts %}
+    <tr>
+        <td>{{ contact.contact }}</td>
+        <td>{{ contact.id_person }}</td>
+        <td>{{ contact.id_contact_type }}</td>
+        <td><a class="btn-sm btn-warning" href="{% url 'edit_contact' contact.id_contact %}">EDIT</a></td>
+        <td><a class="btn-sm btn-danger" href="{% url 'delete_contact' contact.id_contact %}">DELETE</a></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

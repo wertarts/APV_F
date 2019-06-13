@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %}</title>
+    {% include "meta_css.html" %}
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="#">Meetings manager</a>
+    <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarCollapse"
+            aria-controls="navbarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+    >
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto sidenav" id="navAccordion">
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'persons' %}">Person</a>
+            </li>
+            <li class="nav-item">
+                <a
+                        class="nav-link nav-link-collapse"
+                        href="#"
+                        id="hasSubItems"
+                        data-toggle="collapse"
+                        data-target="#collapseSubItems2"
+                        aria-controls="collapseSubItems2"
+                        aria-expanded="false"
+                >Contacts</a>
+                <ul class="nav-second-level collapse" id="collapseSubItems2" data-parent="#navAccordion">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacts' %}">
+                            <span class="nav-link-text">Contacts List</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacts_type' %}">
+                            <span class="nav-link-text">Contacts Type</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'locations' %}">Locations</a>
+            </li>
+            <li class="nav-item">
+                <a
+                        class="nav-link nav-link-collapse"
+                        href="#"
+                        id="hasSubItems"
+                        data-toggle="collapse"
+                        data-target="#collapseSubItems4"
+                        aria-controls="collapseSubItems4"
+                        aria-expanded="false"
+                >Relation</a>
+                <ul class="nav-second-level collapse" id="collapseSubItems4" data-parent="#navAccordion">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'relations_type' %}">
+                            <span class="nav-link-text">Relation Type</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'relations' %}">
+                            <span class="nav-link-text">Relation List</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a
+                        class="nav-link nav-link-collapse"
+                        href="#"
+                        id="hasSubItems"
+                        data-toggle="collapse"
+                        data-target="#collapseSubItems4"
+                        aria-controls="collapseSubItems4"
+                        aria-expanded="false"
+                >Meetings</a>
+                <ul class="nav-second-level collapse" id="collapseSubItems4" data-parent="#navAccordion">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'meetings' %}">
+                            <span class="nav-link-text">Meetings List</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'person_meetings' %}">
+                            <span class="nav-link-text">All Person Meetings</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+    <main class="content-wrapper">
+        <div class="container-fluid" aria-invalid="true">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </main>
+
+    {% include "meta_js.html" %}
+    {% block js %}{% endblock %}
+</body>
+
+<footer class="footer">
+    <div class="container">
+        <span class="text-muted">ARI-I Artem Belov 2019</span>
+        <span class="text-muted">Django project</span>
+    </div>
+</footer>
+</html>

@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Persons Meetings list{% endblock %}
+
+{% block content %}
+
+    <h3>Persons Meetings</h3>
+
+    <a class="btn-sm btn-success" href="{% url 'add_person_meeting' %}">Add Person Meeting</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">Person</th>
+            <th onclick="sortTable(1)">Start time</th>
+            <th onclick="sortTable(2)">Duration</th>
+            <th onclick="sortTable(3)">Location</th>
+            <th onclick="sortTable(4)">Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for pm in person_meetings %}
+            <tr>
+                <td>{{ pm.id_person }}</td>
+                <td>{{ pm.id_meeting.start }}</td>
+                <td>{{ pm.id_meeting.duration }}</td>
+                <td>{{ pm.id_meeting.id_location }}</td>
+                <td>{{ pm.id_meeting.description }}</td>
+                <td><a class="btn-sm btn-warning" href="{% url 'edit_person_meeting' pm.id %}">EDIT</a></td>
+                <td><a class="btn-sm btn-danger" href="{% url 'delete_person_meeting' pm.id %}">DELETE</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

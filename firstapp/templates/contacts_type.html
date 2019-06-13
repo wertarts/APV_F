@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Contacts Type List{% endblock %}
+
+{% block content %}
+
+    <h3>Contacts Type List</h3>
+
+    <a class="btn-sm btn-success" href="{% url 'add_contact_type' %}">Add Contact Type</a>
+
+    <table class="table" id="myTable">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">Name</th>
+            <th onclick="sortTable(1)">Validation Regexp</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for ct in contacts_type %}
+            <tr>
+                <td>{{ ct.name }}</td>
+                <td>{{ ct.validation_regexp }}</td>
+                <td><a class="btn-sm btn-warning" href="{% url 'edit_contact_type' ct.id_contact_type %}">EDIT</a></td>
+                <td><a class="btn-sm btn-danger" href="{% url 'delete_contact_type' ct.id_contact_type %}">DELETE</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

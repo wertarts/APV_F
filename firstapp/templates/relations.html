@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}Relations List{% endblock %}
+
+{% block content %}
+
+    <h3>Relations List</h3>
+
+    <a class="btn-sm btn-success" href="{% url 'add_relation' %}">Add Relation</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">Person 1</th>
+            <th onclick="sortTable(1)">Person 2</th>
+            <th onclick="sortTable(2)">Relation Type</th>
+            <th onclick="sortTable(3)">Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for relations_t in relations %}
+            <tr>
+                <td>{{ relations_t.id_person1 }}</td>
+                <td>{{ relations_t.id_person2 }}</td>
+                <td>{{ relations_t.id_relation_type }}</td>
+                <td>{{ relations_t.description }}</td>
+                <td><a class="btn-sm btn-warning" href="{% url 'edit_relation' relations_t.id_relation %}">EDIT</a></td>
+                <td><a class="btn-sm btn-danger" href="{% url 'delete_relation' relations_t.id_relation %}">DELETE</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

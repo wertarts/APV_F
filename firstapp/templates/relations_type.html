@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Relations Type List{% endblock %}
+
+{% block content %}
+
+    <h3>Relations Type List</h3>
+
+    <a class="btn-sm btn-success" href="{% url 'add_relation_type' %}">Add Relation Type</a>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">Name</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for relations_t in relations_type %}
+            <tr>
+                <td>{{ relations_t.name }}</td>
+                <td><a class="btn-sm btn-warning" href="{% url 'edit_relation_type' relations_t.id_relation %}">EDIT</a>
+                </td>
+                <td><a class="btn-sm btn-danger"
+                       href="{% url 'delete_relation_type' relations_t.id_relation %}">DELETE</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

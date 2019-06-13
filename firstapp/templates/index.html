@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}Persons{% endblock %}
+
+{% block content %}
+
+    <h3>Persons List</h3>
+            <a class="btn-sm btn-success" href="{% url 'add_person' %}">Add Person</a>
+    <table class="table" id="myTable">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">Nickname</th>
+            <th onclick="sortTable(1)">Lastname</th>
+            <th onclick="sortTable(2)">Firstname</th>
+            <th onclick="sortTable(3)">Birthday</th>
+            <th onclick="sortTable(4)">Height</th>
+            <th onclick="sortTable(5)">Gender</th>
+            <th>Person Contacts</th>
+            <th>Person Relation</th>
+            <th>Person Meeting</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for person in persons %}
+            <tr>
+                <td>{{ person.nickname }}</td>
+                <td>{{ person.last_name }}</td>
+                <td>{{ person.first_name }}</td>
+                <td>{{ person.birth_day }}</td>
+                <td>{{ person.height }}</td>
+                <td>{{ person.gender }}</td>
+                <td><a class="btn-sm btn-info" href="{% url 'person_contacts' person.id_person %}">VIEW</a></td>
+                <td><a class="btn-sm btn-info" href="{% url 'show_person_relations' person.id_person %}">VIEW</a></td>
+                <td><a class="btn-sm btn-info" href="{% url 'show_my_person_meetings' person.id_person %}">VIEW</a></td>
+                <td><a class="btn-sm btn-warning" href="{% url 'edit_person' person.id_person %}">EDIT</a></td>
+                <td><a class="btn-sm btn-danger" href="{% url 'delete_person' person.id_person %}">DELETE</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

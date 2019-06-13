@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Meetings list{% endblock %}
+
+{% block content %}
+
+    <h3>Meetings list</h3>
+
+    <a class="btn-sm btn-success" href="{% url 'add_meeting' %}">Add Meeting</a>
+
+    <table class="table" id="myTable">
+        <thead>
+        <tr>
+            <th onclick="sortTable(0)">Start time</th>
+            <th onclick="sortTable(1)">Duration</th>
+            <th onclick="sortTable(2)">Location</th>
+            <th onclick="sortTable(3)">Description</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for meeting in meetings %}
+            <tr>
+                <td>{{ meeting.start_date }} - {{ meeting.start_time }}</td>
+                <td>{{ meeting.duration }}</td>
+                <td>{{ meeting.id_location }}</td>
+                <td>{{ meeting.description }}</td>
+                <td><a class="btn-sm btn-warning" href="{% url 'edit_meeting' meeting.id_meeting %}">EDIT</a></td>
+                <td><a class="btn-sm btn-danger" href="{% url 'delete_meeting' meeting.id_meeting %}">DELETE</a></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

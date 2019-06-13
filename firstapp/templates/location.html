@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Location detail{% endblock %}
+
+{% block content %}
+
+    <ul>
+        <li>{{ location.name }}</li>
+        <li>{{ location.country }}</li>
+        <li>{{ location.zip }}</li>
+        <li>{{ location.city }}</li>
+        <li>{{ location.street_name }}</li>
+        <li>{{ location.street_number }}</li>
+        <li>{{ location.latitude }}</li>
+        <li>{{ location.longitude }}</li>
+    </ul>
+
+{% endblock %}
